@@ -7,6 +7,7 @@ import connectDatabase from './config/database.config';
 import { errorHandler } from './middlewares/errorHandler.middlware';
 import { HTTPSTATUS } from './config/http.config';
 import { asyncHandler } from './middlewares/asyncHandler.middleware';
+import { BadRequestException } from './utils/appError';
 
 const app = express();
 const BASE_PATH = config.BASE_PATH;
@@ -24,8 +25,7 @@ app.use(
 )
 
 
-app.get('/', asyncHandler((req: Request, res: Response, next: NextFunction) => {
-        throw new Error("Test error")
+app.get('/', asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
         res.status(HTTPSTATUS.OK).json({
             message: "Website is running"
         });
