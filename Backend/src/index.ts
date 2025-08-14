@@ -8,6 +8,8 @@ import { errorHandler } from './middlewares/errorHandler.middlware';
 import { HTTPSTATUS } from './config/http.config';
 import { asyncHandler } from './middlewares/asyncHandler.middleware';
 import { BadRequestException } from './utils/appError';
+import passport from 'passport';
+import authRoutes from './routes/auth.route';
 
 const app = express();
 const BASE_PATH = config.BASE_PATH;
@@ -16,6 +18,10 @@ const BASE_PATH = config.BASE_PATH;
 app.use(express.json())
 app.use(urlencoded({ extended: true }))
 app.use(session({ name: "session", keys: [config.SESSION_SECRET], maxAge: 24 * 60 * 60 * 1000, secure: config.NODE_ENV === "production", httpOnly: true, sameSite: "lax" }))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use(
     cors({
@@ -31,6 +37,7 @@ app.get('/', asyncHandler(async(req: Request, res: Response, next: NextFunction)
         });
 }))
 
+app.use(`${BASE_PATH}/auth`, authRoutes)
 
 app.use(errorHandler);
 

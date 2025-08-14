@@ -4,11 +4,11 @@
   "main": "index.js",
   "scripts": {
     "seed": "ts-node src/seeders/role.seeder.ts",
-    "dev" : "ts-node-dev --files src/index.ts",
+    "dev": "ts-node-dev --files src/index.ts",
     "build": "tsc && cp/package.json ./dist",
     "satrt": "node dist/index.js"
   },
-  "keywords": [], 
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
