@@ -7,8 +7,9 @@ import connectDatabase from './config/database.config';
 import { errorHandler } from './middlewares/errorHandler.middlware';
 import { HTTPSTATUS } from './config/http.config';
 import { asyncHandler } from './middlewares/asyncHandler.middleware';
-import { BadRequestException } from './utils/appError';
+import { BadRequestException } from './utils/appError'; 
 import passport from 'passport';
+import './config/passport.config'; 
 import authRoutes from './routes/auth.route';
 
 const app = express();
@@ -45,6 +46,5 @@ app.listen(config.PORT, async() => {
     console.log(`Server is running on port ${config.PORT} in ${config.NODE_ENV}`);
     await connectDatabase();
 })
-
 
 
